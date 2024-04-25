@@ -23,8 +23,8 @@ function renderTable(arr){
             <th>${nv.tongLuong().toLocaleString()}</th>
             <th>${nv.xepLoai()}</th>
             <th>
-                <button onclick="xoaNV()" class="btn btn-danger">Xóa</button>
-                <button onclick="suaNV()" class="btn btn-btn-success">Sửa</button>
+                <button onclick="xoaNV('${nv.acc}')" class="btn btn-danger">Xóa</button>
+                <button onclick="suaNV('${nv.acc}')" class="btn btn-btn-success">Sửa</button>
             </th>
         </tr>
         `
