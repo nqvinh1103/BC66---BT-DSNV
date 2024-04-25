@@ -19,13 +19,19 @@ if (data != null){
 }
 function themNhanVien(){
     var nv = layThongTin()
-    var isValid = kiemTraRong(nv.acc,"tbTKNV")
+    var isValid = kiemTraRong(nv.acc,"tbTKNV") && kiemTraMinMax(nv.acc,"tbTKNV",4,6) 
+    isValid = kiemTraRong(nv.name,"tbTen") && kiemTraChu(nv.name,"tbTen") && isValid
+    isValid = kiemTraRong(nv.email,"tbEmail") && kiemTraEmail(nv.email) && isValid
+    isValid = kiemTraRong(nv.pass,"tbMatKhau") && kiemTraMinMax(nv.pass,"tbMatKhau",6,10) && kiemTraMatKhau(nv.pass,"tbMatKhau") && isValid
+    isValid = kiemTraRong(nv.date,"tbNgay") && kiemTraNgay(nv.date) && isValid
+    isValid = kiemTraRong(nv.salary,"tbLuongCB") && kiemTraLuong(nv.salary,"tbLuongCB",1000000,20000000) && isValid
+    isValid = kiemTraChucVu(nv.position) && isValid
+    isValid = kiemTraRong(nv.hour,"tbGiolam") && kiemTraSoGio(nv.hour,"tbGiolam",80,200) && isValid
     if(isValid){
     dsnv.push(nv)
     var data = JSON.stringify(dsnv)
     localStorage.setItem('DSNV', data)
     renderTable(dsnv)
-    resetForm()
     }
 }
 function xoaNV(id){
@@ -35,32 +41,6 @@ function xoaNV(id){
     dsnv.splice(index,1)
     renderTable(dsnv)
 }
-// function suaNV(id){
-//     var index = dsnv.findIndex(function(item){
-//         item.acc == id
-//     })
-//     var nv = dsnv[index]
-//     document.getElementById('tknv').value = nv.acc
-//     document.getElementById('name').value = nv.name
-//     document.getElementById('email').value = nv.email
-//     document.getElementById('password').value = nv.password
-//     document.getElementById('datepicker').value = nv.date
-//     document.getElementById('luongCB').value = nv.salary
-//     document.getElementById('chucvu').value = nv.position
-//     document.getElementById('gioLam').value = nv.hour
-//     // read only ô input chứa ô mã
-//     document.getElementById('tknv').readOnly = true
-// }
-// function capNhat(){
-//     var nv = layThongTin()
-//     var index = dsnv.findIndex(function(item){
-//         return item.acc == sv.acc
-//     })
-//     // update
-//     dssv[index] = nv
-//     renderDssv(dssv)
-//     // clear form sau khi update
-//     resetForm()
 function resetForm(){
     document.getElementById('formDSNV').reset()
     document.getElementById('tknv').readOnly = false

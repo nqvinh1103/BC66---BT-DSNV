@@ -4,9 +4,9 @@ function layThongTin(){
     var email = document.getElementById('email').value
     var pass = document.getElementById('password').value
     var date = document.getElementById('datepicker').value
-    var salary = document.getElementById('luongCB').value
+    var salary = document.getElementById('luongCB').value*1
     var position = document.getElementById('chucvu').value
-    var hour = document.getElementById('gioLam').value
+    var hour = document.getElementById('gioLam').value*1
     var nv = new NhanVien(acc,name,email,pass,date,salary,position,hour)
     return nv
 }
